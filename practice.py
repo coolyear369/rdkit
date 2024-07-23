@@ -6,5 +6,8 @@ import seaborn as sns
 
 
 df = pd.read_csv("cardata.csv")
-x = df.iloc[:, :3 + 4]
+x = df.iloc[:, :3]
 y = df.iloc[:, 3]
+
+print(x)
+print(y)
