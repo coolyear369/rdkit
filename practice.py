@@ -12,13 +12,14 @@ morphine = Chem.MolFromMolBlock(morphine_mol)
 
 from rdkit.Chem import Draw
 from rdkit.Chem import AllChem
+from rdkit.Chem import Descriptors
 
 img2 = Draw.MolToImage(morphine)
 print(morphine.GetNumAtoms())
 H = Chem.AddHs(morphine)
 AllChem.Compute2DCoords(H)
 Hp = Draw.MolToImage(H)
-Hp.show()
+print(Descriptors.NumRotatableBonds(morphine))
 
 
 
