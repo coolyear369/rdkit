@@ -14,12 +14,24 @@ from rdkit.Chem import Draw
 from rdkit.Chem import AllChem
 from rdkit.Chem import Descriptors
 
-img2 = Draw.MolToImage(morphine)
-print(morphine.GetNumAtoms())
-H = Chem.AddHs(morphine)
-AllChem.Compute2DCoords(H)
-Hp = Draw.MolToImage(H)
-print(Descriptors.NumRotatableBonds(morphine))
+morphinep = Draw.MolToImage(morphine)
+morphinep.show()
+morphineH = Chem.AddHs(morphine)
+AllChem.Compute2DCoords(morphineH)
+morphineHp = Draw.MolToImage(morphineH)
+morphineHp.show()
+AllChem.EmbedMolecule(morphine)
+AllChem.UFFOptimizeMolecule(morphine)
+conformer = morphine.GetConformer()
+atoms = morphine.GetAtoms()
+with open("morphine_xyz", "w") as xyzfile:
+    atomsn = len(atoms)
+    for atom in atoms:
+        pos = conformer.GetAtomPosition(atom.GetIdx())
+        xyzfile.write(f"{atom.GetSymbol()} {pos.x:.4f} {pos.y:.4f} {pos.z:.4f}\n")
+with open("morphine_xyz", "r") as xyzfile:
+    content = xyzfile.read()
+    print(content)
 
 
 
