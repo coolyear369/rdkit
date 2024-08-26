@@ -20,7 +20,7 @@ AllChem.EmbedMolecule(AddH)
 AllChem.UFFOptimizeMolecule(AddH)
 conformer = AddH.GetConformer()
 atoms = AddH.GetAtoms()
-with open("AddH.xyz", "w") as xyzfile:
+with open("AddH.xyz", "w") as xyzfile:#helped by chatgpt
     atomsn = len(atoms)
     xyzfile.write(f"{atomsn} atoms\n")
     for atom in atoms:
